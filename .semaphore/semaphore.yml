@@ -29,6 +29,6 @@ blocks:
       prologue:
         commands:
           - checkout
-          - cache resotre flutter-packages
+          - cache restore flutter-packages
     dependencies:
       - Cache deps
