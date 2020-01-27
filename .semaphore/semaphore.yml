@@ -28,6 +28,16 @@ blocks:
           commands:
             - checkout
             - flutter pub get
-            - flutter analyze
+            - flutter analyze || true
     dependencies:
       - Cache deps
+  - name: Release
+    dependencies:
+      - Test
+    task:
+      jobs:
+        - name: Build macOS release
+          commands:
+            - checkout
+            - flutter pub get
+            - flutter build macos --release
