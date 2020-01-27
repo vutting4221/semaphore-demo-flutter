@@ -15,29 +15,20 @@ blocks:
           commands:
             - checkout
             - flutter pub get
+            - cache store flutter-packages .packages
     dependencies: []
   - name: Test
     task:
       jobs:
         - name: Unit tests
           commands:
-            - checkout
-            - flutter pub get
             - flutter test
         - name: Code analyse
           commands:
-            - checkout
-            - flutter pub get
             - flutter analyze || true
+      prologue:
+        commands:
+          - checkout
+          - cache resotre flutter-packages
     dependencies:
       - Cache deps
-  - name: Release
-    dependencies:
-      - Test
-    task:
-      jobs:
-        - name: Build macOS release
-          commands:
-            - checkout
-            - flutter pub get
-            - flutter build macos --release
