@@ -17,7 +17,7 @@ blocks:
             - flutter pub get
             - cache store flutter-packages .packages
     dependencies: []
-  - name: Test
+  - name: Test IOS
     task:
       jobs:
         - name: Unit tests
@@ -25,10 +25,32 @@ blocks:
             - flutter test
         - name: Code analyse
           commands:
-            - flutter analyze || true
+            - flutter analyze
       prologue:
         commands:
           - checkout
           - cache restore flutter-packages
     dependencies:
       - Cache deps
+  - name: Test Android
+    dependencies:
+      - Cache deps
+    task:
+      prologue:
+        commands:
+          - checkout
+          - flutter pub get
+      agent:
+        machine:
+          type: e1-standard-2
+          os_image: ubuntu1804
+        containers:
+          - name: main
+            image: 'cirrusci/flutter:latest'
+      jobs:
+        - name: Unit Tests
+          commands:
+            - flutter test
+        - name: Code analyse
+          commands:
+            - flutter analyze
