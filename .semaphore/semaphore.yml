@@ -46,7 +46,7 @@ blocks:
           os_image: ubuntu1804
         containers:
           - name: main
-            image: 'cirrusci/flutter:latest'
+            image: 'semaphoreci/android:29-flutter'
       jobs:
         - name: Unit Tests
           commands:
