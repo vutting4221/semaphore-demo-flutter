@@ -30,3 +30,9 @@ Run the test suites
 ```bash
 flutter test
 ```
+
+## License
+
+Copyright (c) 2020 Rendered Text
+
+Distributed under the MIT License. See the file LICENSE.
